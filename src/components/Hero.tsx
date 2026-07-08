@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import * as THREE from "three";
 import { Tv, Radio } from "lucide-react";
 
@@ -8,6 +8,28 @@ interface HeroProps {
 
 export default function Hero({ onOpenWatchLive }: HeroProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isAndroid = typeof navigator !== "undefined" && /android/i.test(navigator.userAgent);
+      setIsMobile(window.innerWidth < 768 && !isAndroid);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const dustParticles = useMemo(() => {
+    return Array.from({ length: 22 }).map((_, i) => ({
+      id: i,
+      left: `${(i * 4.7 + 5) % 90}%`,
+      delay: `${(i * 0.35).toFixed(2)}s`,
+      duration: `${(7 + (i % 4) * 2.5).toFixed(2)}s`,
+      size: `${(i % 3) + 2}px`,
+      opacity: Number(((i % 4) * 0.15 + 0.35).toFixed(2)),
+    }));
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -16,8 +38,8 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
 
     // Check if the user is on a mobile device to completely bypass Three.js setup and rendering, but keep it on for Android apps/devices
     const isAndroid = typeof navigator !== "undefined" && /android/i.test(navigator.userAgent);
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768 && !isAndroid;
-    if (isMobile) {
+    const isMobileDevice = typeof window !== "undefined" && window.innerWidth < 768 && !isAndroid;
+    if (isMobileDevice) {
       canvas.style.display = "none";
       return;
     }
@@ -320,9 +342,75 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
 
   return (
     <section id="hero" className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-b from-[#04000f] via-[#120427] to-[#0a0010]">
-      {/* Beautiful ambient glow elements on mobile when Three.js is disabled */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,10,110,0.5)_0%,transparent_70%)] pointer-events-none md:hidden" />
-      <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-brand-gold/10 rounded-full blur-[120px] pointer-events-none md:hidden" />
+      {/* Premium Mobile Hero Background Animation */}
+      {isMobile && (
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden bg-[#04000f]">
+          {/* Animated Ambient Color Orbs */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#04000f] via-[#120427] to-[#0a0010]" />
+          
+          {/* Central Pulsing Spiritual Radial Glow */}
+          <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-gradient-to-r from-brand-purple/20 to-brand-purple-mid/30 rounded-full blur-[80px] animate-ambient-glow" />
+          <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] bg-brand-gold/10 rounded-full blur-[50px] animate-pulse" />
+
+          {/* Golden Sunburst / Rays Rotating behind the Cross */}
+          <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] opacity-[0.12] animate-slow-spin mix-blend-screen">
+            <svg viewBox="0 0 100 100" className="w-full h-full text-brand-gold">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2, 4" />
+              {Array.from({ length: 24 }).map((_, i) => (
+                <line
+                  key={i}
+                  x1="50"
+                  y1="50"
+                  x2={50 + 45 * Math.cos((i * 15 * Math.PI) / 180)}
+                  y2={50 + 45 * Math.sin((i * 15 * Math.PI) / 180)}
+                  stroke="currentColor"
+                  strokeWidth="0.25"
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Majestic Pulsing Golden Cross silhouette */}
+          <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-72 opacity-[0.4] animate-cross-pulse mix-blend-screen flex items-center justify-center">
+            <svg viewBox="0 0 100 150" className="w-full h-full text-brand-gold filter drop-shadow-[0_0_20px_rgba(212,175,55,0.7)]">
+              {/* Inner glowing core cross */}
+              <path
+                d="M 46 10 L 54 10 L 54 45 L 78 45 L 78 55 L 54 55 L 54 140 L 46 140 L 46 55 L 22 55 L 22 45 L 46 45 Z"
+                fill="currentColor"
+              />
+              {/* Outer halo accents */}
+              <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3, 3" className="animate-pulse" />
+              <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.6" />
+            </svg>
+          </div>
+
+          {/* Premium Floating Gold Dust / Embers */}
+          <div className="absolute inset-0 overflow-hidden">
+            {dustParticles.map((dust) => (
+              <div
+                key={dust.id}
+                className="absolute bg-brand-gold rounded-full animate-float-up shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                style={{
+                  left: dust.left,
+                  width: dust.size,
+                  height: dust.size,
+                  opacity: dust.opacity,
+                  "--duration": dust.duration,
+                  "--delay": dust.delay,
+                } as React.CSSProperties}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Beautiful ambient glow elements on desktop / website bypass */}
+      {!isMobile && (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,10,110,0.5)_0%,transparent_70%)] pointer-events-none md:hidden" />
+          <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-brand-gold/10 rounded-full blur-[120px] pointer-events-none md:hidden" />
+        </>
+      )}
 
       {/* 3D WebGL Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />

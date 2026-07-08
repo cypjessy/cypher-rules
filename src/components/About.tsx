@@ -7,6 +7,16 @@ export default function About() {
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
   const [activeBelief, setActiveBelief] = useState(0);
   const [currentAboutImgIndex, setCurrentAboutImgIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const aboutImages = [
     {
@@ -82,7 +92,7 @@ export default function About() {
   ];
 
   const handleParallaxMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
+    if (isMobile) return;
     if (!parallaxContainerRef.current) return;
     const rect = parallaxContainerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -238,7 +248,7 @@ export default function About() {
                 className="absolute inset-0 lg:inset-[-30px] w-full h-full lg:w-[calc(100%+60px)] lg:h-[calc(100%+60px)] object-cover transition-transform duration-500 ease-out pointer-events-none will-change-transform transform-gpu"
                 loading="lazy"
                 style={{
-                  transform: typeof window !== "undefined" && window.innerWidth >= 1024
+                  transform: !isMobile
                     ? `translate(${parallaxOffset.x}px, ${parallaxOffset.y}px) scale(1.08)`
                     : "none",
                 }}
@@ -252,12 +262,14 @@ export default function About() {
               <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b border-l border-brand-gold/40 z-10 pointer-events-none" />
               <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b border-r border-brand-gold/40 z-10 pointer-events-none" />
 
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 md:bg-black/60 md:backdrop-blur-md px-5 py-2 rounded-full border border-brand-gold/20 select-none z-20 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-                <span className="font-sans text-[0.68rem] tracking-[2px] uppercase text-brand-gold font-semibold">
-                  ◆ Interactive Parallax Depth ◆
-                </span>
-              </div>
+              {!isMobile && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 md:bg-black/60 md:backdrop-blur-md px-5 py-2 rounded-full border border-brand-gold/20 select-none z-20 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
+                  <span className="font-sans text-[0.68rem] tracking-[2px] uppercase text-brand-gold font-semibold">
+                    ◆ Interactive Parallax Depth ◆
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Content info next to the Parallax Image */}
