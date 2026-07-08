@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -22,7 +22,37 @@ export default function App() {
   const openWatchLiveModal = () => setIsWatchLiveOpen(true);
   const closeWatchLiveModal = () => setIsWatchLiveOpen(false);
 
+  // Preload and cache all major image assets to prevent network fetches on scroll
+  useEffect(() => {
+    const imagesToPreload = [
+      "https://i.postimg.cc/dVt593hb/4.jpg",
+      "https://i.postimg.cc/0QgGhyy0/5.jpg",
+      "https://i.postimg.cc/6QZnVxf4/6.jpg",
+      "https://i.postimg.cc/6QzH0FqH/1.jpg",
+      "https://i.postimg.cc/651MYwC5/7.jpg",
+      "https://i.postimg.cc/Y0Cxzy92/8.jpg",
+      "https://i.postimg.cc/DzYsKyyw/10.jpg",
+      "https://i.postimg.cc/BQ5BVVtw/21.jpg",
+      "https://i.postimg.cc/3rmXkcj8/22.jpg",
+      "https://i.postimg.cc/rmWrtDrP/23.jpg",
+      "https://i.postimg.cc/NjynRL9D/13.jpg",
+      "https://i.postimg.cc/vmX6M7bd/15.jpg",
+      "https://i.postimg.cc/y65JjYvv/16.jpg",
+      "https://i.postimg.cc/4N693RQD/17.jpg",
+      "https://i.postimg.cc/ZnThFNXM/18.jpg",
+      "https://i.postimg.cc/ncP6MNVw/19.jpg",
+      "https://i.postimg.cc/ZRbfwLKF/20.jpg",
+      "https://i.postimg.cc/VNKz5d3f/12.jpg"
+    ];
+
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
+
     <div className="relative min-h-screen bg-[#0a0010] text-white selection:bg-brand-gold selection:text-black">
       
       {/* Navigation Header */}

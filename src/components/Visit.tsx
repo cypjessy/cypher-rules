@@ -15,6 +15,9 @@ export default function Visit() {
       setIsMobile(window.innerWidth < 768);
     };
     handleResize();
+    if (window.innerWidth < 768) {
+      setActiveMapTab("ROAD_MAP");
+    }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -104,11 +107,12 @@ export default function Visit() {
   });
 
   useEffect(() => {
+    if (isMobile) return;
     const interval = setInterval(() => {
       setActiveBranchBg((prev) => (prev + 1) % branchBgImages.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     if (activeMapTab !== "3D_MODEL" || !canvasRef.current) return;
@@ -537,9 +541,9 @@ export default function Visit() {
     {/* National Branches Directory - Fully Edge-to-Edge with Dark Theme and Prominent Autoplay Background */}
     <section id="church-branches" className="relative w-full bg-gradient-to-b from-[#120427] to-[#080010] py-24 border-t border-white/5 overflow-hidden">
       
-      {/* Autoplay Background Slideshow with pristine visibility */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
-        {branchBgImages.map((img, index) => (
+      {/* Autoplay Background Slideshow with pristine visibility, disabled on mobile in favor of premium gradient */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden bg-gradient-to-b from-[#120427] to-[#080010]">
+        {!isMobile && branchBgImages.map((img, index) => (
           <div
             key={img}
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ease-in-out will-change-[opacity,transform] transform-gpu ${

@@ -62,19 +62,30 @@ const bgImages = [
 
 export default function Services() {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const interval = setInterval(() => {
       setCurrentBgIndex((prev) => (prev + 1) % bgImages.length);
     }, 5000); // Transitions smoothly every 5 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
 
   return (
     <section id="services" className="py-24 px-3 md:px-12 relative overflow-hidden text-white min-h-[800px] flex items-center">
-      {/* Auto-playing premium background slideshow with crossfade & Ken Burns zoom */}
-      <div className="absolute inset-0 z-0 bg-[#0a0010]">
-        {bgImages.map((img, index) => (
+      {/* Auto-playing premium background slideshow with crossfade & Ken Burns zoom, premium color fallback on mobile */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0a0010] via-[#1b0533] to-[#0a0010]">
+        {!isMobile && bgImages.map((img, index) => (
           <div
             key={img}
             className="absolute inset-0 transition-all duration-[2000ms] ease-in-out"
