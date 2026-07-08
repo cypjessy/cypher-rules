@@ -12,8 +12,8 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      const isAndroid = typeof navigator !== "undefined" && /android/i.test(navigator.userAgent);
-      setIsMobile(window.innerWidth < 768 && !isAndroid);
+      const isMobileDevice = window.innerWidth < 768 || (typeof navigator !== "undefined" && /android|iphone|ipad|ipod|mobi/i.test(navigator.userAgent));
+      setIsMobile(isMobileDevice);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -36,9 +36,8 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
 
     const canvas = canvasRef.current;
 
-    // Check if the user is on a mobile device to completely bypass Three.js setup and rendering, but keep it on for Android apps/devices
-    const isAndroid = typeof navigator !== "undefined" && /android/i.test(navigator.userAgent);
-    const isMobileDevice = typeof window !== "undefined" && window.innerWidth < 768 && !isAndroid;
+    // Check if the user is on a mobile device to completely bypass Three.js setup and rendering
+    const isMobileDevice = window.innerWidth < 768 || (typeof navigator !== "undefined" && /android|iphone|ipad|ipod|mobi/i.test(navigator.userAgent));
     if (isMobileDevice) {
       canvas.style.display = "none";
       return;
