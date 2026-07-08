@@ -11,7 +11,8 @@ export default function About() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
+      const isMobileDevice = window.innerWidth < 1024 || (typeof navigator !== "undefined" && /android|iphone|ipad|ipod|mobi/i.test(navigator.userAgent));
+      setIsMobile(isMobileDevice);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -40,11 +41,12 @@ export default function About() {
   ];
 
   useEffect(() => {
+    if (isMobile) return;
     const timer = setInterval(() => {
       setCurrentAboutImgIndex((prev) => (prev + 1) % aboutImages.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isMobile]);
 
   const coreBeliefs = [
     {
@@ -122,26 +124,33 @@ export default function About() {
             <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none" />
             
             {/* Slide Images with crossfade & Ken Burns zoom */}
-            {aboutImages.map((image, idx) => (
-              <div
-                key={image.url}
-                className="absolute inset-0 transition-opacity duration-1000 ease-in-out will-change-opacity transform-gpu"
-                style={{
-                  opacity: idx === currentAboutImgIndex ? 1 : 0,
-                  zIndex: idx === currentAboutImgIndex ? 5 : 0,
-                }}
-              >
-                <img
-                  src={image.url}
-                  alt={image.tag}
-                  referrerPolicy="no-referrer"
-                  className={`w-full h-full object-cover transition-transform duration-[5000ms] ease-out will-change-transform transform-gpu ${
-                    idx === currentAboutImgIndex ? "scale-105" : "scale-100"
-                  }`}
-                  loading="lazy"
-                />
-              </div>
-            ))}
+            {aboutImages.map((image, idx) => {
+              if (isMobile && idx !== currentAboutImgIndex) return null;
+              return (
+                <div
+                  key={image.url}
+                  className="absolute inset-0 transition-opacity duration-1000 ease-in-out will-change-opacity transform-gpu"
+                  style={{
+                    opacity: idx === currentAboutImgIndex ? 1 : 0,
+                    zIndex: idx === currentAboutImgIndex ? 5 : 0,
+                  }}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.tag}
+                    referrerPolicy="no-referrer"
+                    className={`w-full h-full object-cover ${
+                      isMobile
+                        ? ""
+                        : `transition-transform duration-[5000ms] ease-out will-change-transform transform-gpu ${
+                            idx === currentAboutImgIndex ? "scale-105" : "scale-100"
+                          }`
+                    }`}
+                    loading="lazy"
+                  />
+                </div>
+              );
+            })}
 
             {/* Decorative Corner Accents (Golden brackets) */}
             <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-brand-gold/70 z-20" />

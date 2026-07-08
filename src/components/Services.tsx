@@ -66,7 +66,8 @@ export default function Services() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const isMobileDevice = window.innerWidth < 1024 || (typeof navigator !== "undefined" && /android|iphone|ipad|ipod|mobi/i.test(navigator.userAgent));
+      setIsMobile(isMobileDevice);
     };
     handleResize();
     window.addEventListener("resize", handleResize);

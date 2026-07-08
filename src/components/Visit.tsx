@@ -12,12 +12,13 @@ export default function Visit() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const isMobileDevice = window.innerWidth < 1024 || (typeof navigator !== "undefined" && /android|iphone|ipad|ipod|mobi/i.test(navigator.userAgent));
+      setIsMobile(isMobileDevice);
+      if (isMobileDevice) {
+        setActiveMapTab("ROAD_MAP");
+      }
     };
     handleResize();
-    if (window.innerWidth < 768) {
-      setActiveMapTab("ROAD_MAP");
-    }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
