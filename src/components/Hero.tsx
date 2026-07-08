@@ -13,7 +13,27 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
+
+    // Check if the user is on a mobile device to completely bypass Three.js setup and rendering
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    if (isMobile) {
+      canvas.style.display = "none";
+      return;
+    }
+
     let animationFrameId: number;
+    let isHeroVisible = true;
+
+    // Use IntersectionObserver to pause Three.js render loop when out of viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isHeroVisible = entry.isIntersecting;
+      },
+      { threshold: 0.01 }
+    );
+    if (canvas.parentElement) {
+      observer.observe(canvas.parentElement);
+    }
 
     // Create Renderer
     const renderer = new THREE.WebGLRenderer({
@@ -229,6 +249,7 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+      if (!isHeroVisible) return;
       const t = clock.getElapsedTime();
 
       // Slow orbital camera movement
@@ -273,6 +294,7 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
+      observer.disconnect();
 
       // Dispose resources
       starGeo.dispose();
@@ -296,7 +318,11 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
   }, []);
 
   return (
-    <section id="hero" className="relative w-full h-[100vh] overflow-hidden">
+    <section id="hero" className="relative w-full h-[100vh] overflow-hidden bg-gradient-to-b from-[#04000f] via-[#120427] to-[#0a0010]">
+      {/* Beautiful ambient glow elements on mobile when Three.js is disabled */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,10,110,0.5)_0%,transparent_70%)] pointer-events-none md:hidden" />
+      <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-brand-gold/10 rounded-full blur-[120px] pointer-events-none md:hidden" />
+
       {/* 3D WebGL Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
 

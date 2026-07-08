@@ -8,6 +8,16 @@ export default function Visit() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMapTab, setActiveMapTab] = useState<"3D_MODEL" | "ROAD_MAP" | "SATELLITE_MAP">("SATELLITE_MAP");
   const [activeBranchBg, setActiveBranchBg] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const branchBgImages = [
     "https://i.postimg.cc/BQ5BVVtw/21.jpg",
@@ -381,7 +391,7 @@ export default function Visit() {
                 {activeMapTab === "ROAD_MAP" && (
                   <iframe
                     title="Kingdom Seekers Fellowship Road Map"
-                    src="https://maps.google.com/maps?q=Kingdom%20Seekers%20Fellowship%2C%20Nakuru%20Kenya&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    src={`https://maps.google.com/maps?q=Kingdom%20Seekers%20Fellowship%2C%20Nakuru%20Kenya&t=&z=${isMobile ? 18 : 16}&ie=UTF8&iwloc=&output=embed`}
                     className="w-full h-full border-0 animate-fade-in invert-[90%] hue-rotate-180 brightness-95"
                     allowFullScreen={true}
                     loading="lazy"
@@ -392,7 +402,7 @@ export default function Visit() {
                 {activeMapTab === "SATELLITE_MAP" && (
                   <iframe
                     title="Kingdom Seekers Fellowship Satellite Map"
-                    src="https://maps.google.com/maps?q=Kingdom%20Seekers%20Fellowship%2C%20Nakuru%20Kenya&t=k&z=18&ie=UTF8&iwloc=&output=embed"
+                    src={`https://maps.google.com/maps?q=Kingdom%20Seekers%20Fellowship%2C%20Nakuru%20Kenya&t=k&z=${isMobile ? 20 : 18}&ie=UTF8&iwloc=&output=embed`}
                     className="w-full h-full border-0 animate-fade-in"
                     allowFullScreen={true}
                     loading="lazy"
