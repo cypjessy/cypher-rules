@@ -41,8 +41,6 @@ export default function Ministries() {
     setSelectedMinistry(ministry);
     setFormSubmitted(false);
     setFormData({ fullName: "", email: "", phone: "", message: "" });
-    // Smooth scroll to top of window to reset position
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleCloseMinistry = () => {
@@ -58,8 +56,8 @@ export default function Ministries() {
   return (
     <section id="ministries" className="py-24 px-3 md:px-12 bg-gradient-to-b from-brand-purple-dark via-[#150530] to-brand-purple-dark relative overflow-hidden">
       
-      {/* Background Floating Orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
+      {/* Background Floating Orbs - optimized to hide on mobile to prevent scroll lag */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0 hidden md:block">
         <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] rounded-full bg-brand-purple/40 filter blur-[80px]" />
         <div className="absolute top-1/2 right-[-80px] w-[250px] h-[250px] rounded-full bg-brand-gold/6 filter blur-[80px]" />
         <div className="absolute bottom-[-60px] left-[40%] w-[200px] h-[200px] rounded-full bg-[#6414a0]/30 filter blur-[80px]" />
@@ -87,7 +85,7 @@ export default function Ministries() {
             <div
               key={ministry.title}
               onClick={() => handleOpenMinistry(ministry)}
-              className="group relative bg-[#180836]/90 md:bg-[#180836]/60 md:backdrop-blur-md border border-brand-gold/15 rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:border-brand-gold/40 hover:shadow-2xl hover:shadow-black/45 hover:shadow-brand-gold/5 transition-all duration-350 flex flex-col h-full cursor-pointer"
+              className="group relative bg-[#1c0c3b] border border-brand-gold/15 rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-brand-gold/40 hover:shadow-xl transition-all duration-300 flex flex-col h-full cursor-pointer transform-gpu"
             >
               {/* Image Header with Hover Scale */}
               <div className="relative h-48 w-full overflow-hidden bg-brand-purple-dark/40">
