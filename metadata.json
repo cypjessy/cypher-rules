@@ -1,0 +1,6 @@
+{
+  "name": "Kingdom Seekers Fellowship",
+  "description": "Kingdom Seekers Fellowship church website, Nakuru Kenya. 'Seek ye first the Kingdom of God' - Matthew 6:33.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
