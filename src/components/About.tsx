@@ -115,7 +115,7 @@ export default function About() {
             {aboutImages.map((image, idx) => (
               <div
                 key={image.url}
-                className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                className="absolute inset-0 transition-opacity duration-1000 ease-in-out will-change-opacity transform-gpu"
                 style={{
                   opacity: idx === currentAboutImgIndex ? 1 : 0,
                   zIndex: idx === currentAboutImgIndex ? 5 : 0,
@@ -125,9 +125,10 @@ export default function About() {
                   src={image.url}
                   alt={image.tag}
                   referrerPolicy="no-referrer"
-                  className={`w-full h-full object-cover transition-transform duration-[5000ms] ease-out ${
+                  className={`w-full h-full object-cover transition-transform duration-[5000ms] ease-out will-change-transform transform-gpu ${
                     idx === currentAboutImgIndex ? "scale-105" : "scale-100"
                   }`}
+                  loading="lazy"
                 />
               </div>
             ))}
@@ -139,7 +140,7 @@ export default function About() {
             <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-brand-gold/70 z-20" />
 
             {/* Floating Tag (Changes dynamically) */}
-            <div className="absolute top-6 left-6 z-20 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-gold/20 text-[0.68rem] tracking-widest uppercase text-brand-gold font-mono flex items-center gap-1.5 transition-all duration-500">
+            <div className="absolute top-6 left-6 z-20 bg-black/90 md:bg-black/60 md:backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-gold/20 text-[0.68rem] tracking-widest uppercase text-brand-gold font-mono flex items-center gap-1.5 transition-all duration-500">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping" />
               {aboutImages[currentAboutImgIndex].tag}
             </div>
@@ -234,7 +235,8 @@ export default function About() {
                 src="https://i.postimg.cc/DzYsKyyw/10.jpg"
                 alt="The Holy Scriptures"
                 referrerPolicy="no-referrer"
-                className="absolute inset-0 lg:inset-[-30px] w-full h-full lg:w-[calc(100%+60px)] lg:h-[calc(100%+60px)] object-cover transition-transform duration-500 ease-out pointer-events-none"
+                className="absolute inset-0 lg:inset-[-30px] w-full h-full lg:w-[calc(100%+60px)] lg:h-[calc(100%+60px)] object-cover transition-transform duration-500 ease-out pointer-events-none will-change-transform transform-gpu"
+                loading="lazy"
                 style={{
                   transform: typeof window !== "undefined" && window.innerWidth >= 1024
                     ? `translate(${parallaxOffset.x}px, ${parallaxOffset.y}px) scale(1.08)`
@@ -250,7 +252,7 @@ export default function About() {
               <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b border-l border-brand-gold/40 z-10 pointer-events-none" />
               <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b border-r border-brand-gold/40 z-10 pointer-events-none" />
 
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-5 py-2 rounded-full border border-brand-gold/20 select-none z-20 flex items-center gap-2">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 md:bg-black/60 md:backdrop-blur-md px-5 py-2 rounded-full border border-brand-gold/20 select-none z-20 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
                 <span className="font-sans text-[0.68rem] tracking-[2px] uppercase text-brand-gold font-semibold">
                   ◆ Interactive Parallax Depth ◆

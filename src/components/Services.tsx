@@ -116,7 +116,7 @@ export default function Services() {
           {servicesList.map((service) => (
             <div
               key={service.title}
-              className="group relative bg-[#1c0a35]/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] hover:border-brand-gold/40 hover:bg-[#250d47]/50 overflow-hidden cursor-default"
+              className="group relative bg-[#1c0a35]/90 md:bg-[#1c0a35]/40 md:backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] hover:border-brand-gold/40 hover:bg-[#250d47]/50 overflow-hidden cursor-default"
             >
               {/* Premium hover glow and corner brackets */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 blur-[35px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -132,7 +132,7 @@ export default function Services() {
 
               {/* Badge & Emoji Row */}
               <div className="flex justify-between items-center mb-6 relative z-10">
-                <div className="flex items-center gap-1.5 bg-white/5 backdrop-blur-md text-brand-gold text-[0.72rem] font-semibold px-4 py-1.5 rounded-full border border-white/10 shadow-sm group-hover:bg-brand-gold group-hover:text-brand-purple-dark group-hover:border-brand-gold transition-all duration-300">
+                <div className="flex items-center gap-1.5 bg-white/10 md:bg-white/5 md:backdrop-blur-md text-brand-gold text-[0.72rem] font-semibold px-4 py-1.5 rounded-full border border-white/10 shadow-sm group-hover:bg-brand-gold group-hover:text-brand-purple-dark group-hover:border-brand-gold transition-all duration-300">
                   <span className="text-xs group-hover:scale-125 transition-transform duration-300">⏰</span> {service.time}
                 </div>
                 <div className="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-xl border border-white/10 shadow-inner group-hover:scale-110 group-hover:border-brand-gold/30 group-hover:bg-brand-gold/10 transition-all duration-300">

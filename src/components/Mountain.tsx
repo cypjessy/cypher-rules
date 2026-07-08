@@ -241,7 +241,7 @@ export default function Mountain() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Mountain Story Card */}
-          <div className="lg:col-span-6 text-left bg-black/40 backdrop-blur-md border border-white/5 p-8 md:p-12 rounded-3xl shadow-2xl">
+          <div className="lg:col-span-6 text-left bg-black/85 md:bg-black/40 md:backdrop-blur-md border border-white/5 p-8 md:p-12 rounded-3xl shadow-2xl">
             <span className="text-brand-gold text-[0.72rem] tracking-[3px] uppercase font-bold mb-4 block">
               Heaven's Gate
             </span>
@@ -273,7 +273,7 @@ export default function Mountain() {
 
           {/* Right Column: Submit Prayer Request Form */}
           <div className="lg:col-span-6">
-            <div className="bg-[#120427]/80 border border-brand-gold/15 p-6 md:p-10 rounded-3xl shadow-2xl backdrop-blur-md relative overflow-hidden text-left">
+            <div className="bg-[#120427]/95 md:bg-[#120427]/80 border border-brand-gold/15 p-6 md:p-10 rounded-3xl shadow-2xl md:backdrop-blur-md relative overflow-hidden text-left">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-2xl pointer-events-none" />
 
               {!isSubmitted ? (

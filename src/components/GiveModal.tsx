@@ -33,7 +33,7 @@ export default function GiveModal({ isOpen, onClose }: GiveModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-md p-4 flex justify-center items-center">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 md:bg-black/75 md:backdrop-blur-md p-4 flex justify-center items-center">
       <div className="relative w-full max-w-lg bg-[#110526] border border-brand-gold/25 rounded-2xl overflow-hidden shadow-2xl text-left my-auto">
         
         {/* Header */}

@@ -302,7 +302,7 @@ export default function Hero({ onOpenWatchLive }: HeroProps) {
 
       {/* Hero Overlaid UI Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4 md:px-6 pointer-events-none select-none">
-        <div className="inline-block border border-brand-gold/40 text-brand-gold text-[0.68rem] md:text-xs tracking-[3px] uppercase px-5 py-2.5 rounded-sm mb-6 bg-brand-purple-dark/40 backdrop-blur-xs shadow-inner">
+        <div className="inline-block border border-brand-gold/40 text-brand-gold text-[0.68rem] md:text-xs tracking-[3px] uppercase px-5 py-2.5 rounded-sm mb-6 bg-brand-purple-dark/80 md:bg-brand-purple-dark/40 md:backdrop-blur-xs shadow-inner">
           ✦ Est. 2012 — Nakuru City, Kenya ✦
         </div>
 

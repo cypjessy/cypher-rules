@@ -338,9 +338,9 @@ export default function Visit() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Interactive Map Section */}
-            <div className="flex flex-col w-full bg-[#180836]/60 backdrop-blur-md rounded-2xl border border-brand-gold/15 overflow-hidden shadow-2xl shadow-black/45">
+            <div className="flex flex-col w-full bg-[#180836]/90 md:bg-[#180836]/60 md:backdrop-blur-md rounded-2xl border border-brand-gold/15 overflow-hidden shadow-2xl shadow-black/45">
               {/* Map Tab Controllers */}
-              <div className="flex bg-[#100322]/85 backdrop-blur-md p-2 border-b border-white/5 gap-2 overflow-x-auto shrink-0">
+              <div className="flex bg-[#100322]/95 md:bg-[#100322]/85 md:backdrop-blur-md p-2 border-b border-white/5 gap-2 overflow-x-auto shrink-0">
                 <button
                   onClick={() => setActiveMapTab("SATELLITE_MAP")}
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all shrink-0 cursor-pointer ${
@@ -407,7 +407,7 @@ export default function Visit() {
                       <Compass className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "10s" }} />
                       <span>3D Nakuru Center Grid</span>
                     </div>
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#100322]/90 backdrop-blur-md border border-brand-gold/25 px-4 py-1.5 rounded-full shadow-lg text-[0.7rem] uppercase tracking-wider text-brand-gold font-bold select-none text-center whitespace-nowrap">
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#100322]/95 md:bg-[#100322]/90 md:backdrop-blur-md border border-brand-gold/25 px-4 py-1.5 rounded-full shadow-lg text-[0.7rem] uppercase tracking-wider text-brand-gold font-bold select-none text-center whitespace-nowrap">
                       📍 Bondeni Street Center Highlighted
                     </div>
                   </>
@@ -420,7 +420,7 @@ export default function Visit() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 
                 {/* Location Card */}
-                <div className="bg-[#180836]/45 backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
+                <div className="bg-[#180836]/90 md:bg-[#180836]/45 md:backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
                   <div className="flex gap-4 items-start">
                     <div className="w-11 h-11 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/30 text-brand-gold rounded-xl flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
                       <MapPin className="w-5 h-5" />
@@ -440,7 +440,7 @@ export default function Visit() {
                 </div>
 
                 {/* Sunday Timings Card */}
-                <div className="bg-[#180836]/45 backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
+                <div className="bg-[#180836]/90 md:bg-[#180836]/45 md:backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
                   <div className="flex gap-4 items-start">
                     <div className="w-11 h-11 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/30 text-brand-gold rounded-xl flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
                       <Clock className="w-5 h-5" />
@@ -460,7 +460,7 @@ export default function Visit() {
                 </div>
 
                 {/* Call Card */}
-                <div className="bg-[#180836]/45 backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
+                <div className="bg-[#180836]/90 md:bg-[#180836]/45 md:backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
                   <div className="flex gap-4 items-start">
                     <div className="w-11 h-11 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/30 text-brand-gold rounded-xl flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
                       <Phone className="w-5 h-5" />
@@ -477,7 +477,7 @@ export default function Visit() {
                 </div>
 
                 {/* Web Card */}
-                <div className="bg-[#180836]/45 backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
+                <div className="bg-[#180836]/90 md:bg-[#180836]/45 md:backdrop-blur-md border border-brand-gold/15 rounded-2xl p-6 hover:-translate-y-1 hover:border-brand-gold/30 hover:shadow-2xl hover:shadow-brand-gold/5 transition-all duration-350 group flex flex-col justify-between">
                   <div className="flex gap-4 items-start">
                     <div className="w-11 h-11 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/30 text-brand-gold rounded-xl flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
                       <Globe className="w-5 h-5" />
@@ -528,11 +528,11 @@ export default function Visit() {
     <section id="church-branches" className="relative w-full bg-gradient-to-b from-[#120427] to-[#080010] py-24 border-t border-white/5 overflow-hidden">
       
       {/* Autoplay Background Slideshow with pristine visibility */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+      <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
         {branchBgImages.map((img, index) => (
           <div
             key={img}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ease-in-out ${
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ease-in-out will-change-[opacity,transform] transform-gpu ${
               index === activeBranchBg ? "opacity-65 scale-102" : "opacity-0 scale-100"
             }`}
             style={{ backgroundImage: `url(${img})` }}
@@ -595,7 +595,7 @@ export default function Visit() {
             {filteredBranches.map((branch, idx) => (
               <div
                 key={idx}
-                className="bg-[#180836]/75 backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-xl hover:shadow-black/50 hover:border-brand-gold/25 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left group"
+                className="bg-[#180836]/95 md:bg-[#180836]/75 md:backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-xl hover:shadow-black/50 hover:border-brand-gold/25 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left group"
               >
                 <div>
                   <div className="flex justify-between items-start gap-2 mb-4">

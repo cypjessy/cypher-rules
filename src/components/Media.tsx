@@ -275,7 +275,7 @@ export default function Media() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8 items-start">
           
           {/* Column 1: MBCI Radio Console & Frequencies */}
-          <div className="bg-[#100424]/80 border border-brand-gold/15 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-md relative overflow-hidden">
+          <div className="bg-[#100424]/95 md:bg-[#100424]/80 border border-brand-gold/15 rounded-3xl p-6 md:p-8 shadow-2xl md:backdrop-blur-md relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-2xl pointer-events-none" />
             
             <div className="flex items-center gap-3 border-b border-white/10 pb-5 mb-6">
@@ -373,7 +373,7 @@ export default function Media() {
           </div>
 
           {/* Column 2: Praise & Worship Interactive Player */}
-          <div className="bg-[#100424]/80 border border-brand-gold/15 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-md relative overflow-hidden text-left flex flex-col justify-between h-full">
+          <div className="bg-[#100424]/95 md:bg-[#100424]/80 border border-brand-gold/15 rounded-3xl p-6 md:p-8 shadow-2xl md:backdrop-blur-md relative overflow-hidden text-left flex flex-col justify-between h-full">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full blur-2xl pointer-events-none" />
 
             {/* Player Header */}

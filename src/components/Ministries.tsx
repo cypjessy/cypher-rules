@@ -87,7 +87,7 @@ export default function Ministries() {
             <div
               key={ministry.title}
               onClick={() => handleOpenMinistry(ministry)}
-              className="group relative bg-[#180836]/60 backdrop-blur-md border border-brand-gold/15 rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:border-brand-gold/40 hover:shadow-2xl hover:shadow-black/45 hover:shadow-brand-gold/5 transition-all duration-350 flex flex-col h-full cursor-pointer"
+              className="group relative bg-[#180836]/90 md:bg-[#180836]/60 md:backdrop-blur-md border border-brand-gold/15 rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:border-brand-gold/40 hover:shadow-2xl hover:shadow-black/45 hover:shadow-brand-gold/5 transition-all duration-350 flex flex-col h-full cursor-pointer"
             >
               {/* Image Header with Hover Scale */}
               <div className="relative h-48 w-full overflow-hidden bg-brand-purple-dark/40">
@@ -95,7 +95,8 @@ export default function Ministries() {
                   src={ministry.image}
                   alt={ministry.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108"
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108 will-change-transform transform-gpu"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#180836] via-[#180836]/30 to-black/40" />
                 
@@ -140,7 +141,7 @@ export default function Ministries() {
             className="fixed inset-0 z-50 bg-[#0c021c] overflow-y-auto text-white"
           >
             {/* Top Navigation Bar (Sticky for luxury UX) */}
-            <div className="sticky top-0 z-30 bg-[#0c021c]/90 backdrop-blur-md border-b border-white/5 py-4 px-4 md:px-12 flex items-center justify-between">
+            <div className="sticky top-0 z-30 bg-[#0c021c]/95 md:bg-[#0c021c]/90 md:backdrop-blur-md border-b border-white/5 py-4 px-4 md:px-12 flex items-center justify-between">
               <button
                 onClick={handleCloseMinistry}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-brand-gold/30 hover:text-brand-gold transition-all text-xs font-semibold cursor-pointer select-none"
@@ -248,7 +249,7 @@ export default function Ministries() {
                 <div className="lg:col-span-5 space-y-8 text-left">
                   
                   {/* Schedule Widget Card */}
-                  <div className="bg-[#180836]/60 backdrop-blur-md border border-white/5 rounded-2xl p-6 md:p-8 shadow-xl">
+                  <div className="bg-[#180836]/90 md:bg-[#180836]/60 md:backdrop-blur-md border border-white/5 rounded-2xl p-6 md:p-8 shadow-xl">
                     <h4 className="font-serif text-lg font-bold text-white border-b border-white/5 pb-3 mb-4 flex items-center gap-2">
                       <Clock className="w-4 h-4 text-brand-gold" />
                       Service & Meeting Times
@@ -273,7 +274,7 @@ export default function Ministries() {
                   </div>
 
                   {/* Ministry Leader Contact Card */}
-                  <div className="bg-[#180836]/60 backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-xl flex items-center gap-4">
+                  <div className="bg-[#180836]/90 md:bg-[#180836]/60 md:backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-xl flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 border border-brand-gold/20 text-brand-gold rounded-full flex items-center justify-center shrink-0">
                       <User className="w-6 h-6" />
                     </div>

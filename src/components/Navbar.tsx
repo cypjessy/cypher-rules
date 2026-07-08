@@ -26,7 +26,7 @@ export default function Navbar({ onOpenGive }: NavbarProps) {
         id="mainNav"
         className={`fixed top-0 left-0 w-full z-40 px-6 py-4 md:px-12 flex items-center justify-between transition-all duration-300 ${
           isScrolled
-            ? "bg-[#0a0010]/92 backdrop-blur-md border-b border-brand-gold/15 shadow-lg"
+            ? "bg-[#0a0010] md:bg-[#0a0010]/92 md:backdrop-blur-md border-b border-brand-gold/15 shadow-lg"
             : "bg-transparent"
         }`}
       >
